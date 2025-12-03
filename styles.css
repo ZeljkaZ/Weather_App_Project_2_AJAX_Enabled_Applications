@@ -1,0 +1,277 @@
+/* 
+  File: styles.css
+  Author: Lawin Khalil and Zeljka Zujic
+  Date: 3 December 2025
+  Purpose: Styles for Weather Forecast App
+  Description: Clean, modern, and responsive design for weather application
+*/
+
+
+/* ========== GLOBAL RESET ========== */
+/* This removes deafault margins and padding from all elements and esures that box-model includes padding and border */
+* {
+  margin: 0; /* removes margin */
+  padding: 0; /* removes padding */
+  box-sizing: border-box; /* includes padding and border in element height/width */
+}
+
+/* ========== CSS VARIABLES ========== */
+/* CS variables make it easy to change color, rdius or other properties; source: https://www.w3schools.com/css/css3_variables.asp */
+:root {
+  --primary-color: #4c66e7; /* Main color */
+  --secondary-color: #ff7f3e; /* Secondary color */
+  --accent-color: #eb4c4c; /* Accent color */
+  --card-bg: #ffffff; /* Card background color */
+  --text-dark: #2c3e50; /* Dark text color */
+  --text-light: #7f8c8d; /* Light text color */
+
+  --radius: 10px; /* Rounded corners radius for buttons and cards - for consistency */
+}
+
+/* ========== GLOBAL STYLES ========== */
+body {
+  font-family: "Segoe UI", Tahoma, Verdana, sans-serif; /* set of fonts to be used - if the first one is not available, it continues to the next available one */
+  background: linear-gradient(135deg, var(--primary-color) 0%, #3b51c0 100%); /* gradient background */
+  min-height: 100vh; /* Ensures body takes the full height of the viewport */
+  color: var(--text-dark); /* Default text color */
+  padding: 1rem; /* Padding around the page */
+}
+
+/* Hides elements with the 'hidden' class */
+.hidden {
+  display: none !important; /* !important used to override other styles */
+}
+
+
+/* Main page container */
+.container {
+  max-width: 1100px; /* Limits width so that content does not stretch too much */
+  margin: auto; /* Centers content horizontally */
+  background: var(--card-bg); /* White backgroud for main content */
+  padding: 2rem; /* Adds space inside container */
+  border-radius: var(--radius); /* Rounded corners */
+}
+
+/* ========== HEADER ========== */
+.header {
+  text-align: center; /* Center alighns all header content */
+  margin-bottom: 2rem; /* Adds space below header */
+}
+
+.header h1 {
+  color: var(--primary-color); /* Main heading uses primary color defined in variables */
+  font-size: 2.2rem; /* Size of the main heading */ 
+  margin-bottom: 0.3rem; /* Adds small spacing below heading */ 
+}
+
+.subtitle {
+  color: var(--text-light); /* Lighter text color for subtitle (also from variables) */
+}
+
+/* ========== SEARCH SECTION ========== */
+.search-section {
+  background: linear-gradient(135deg, var(--secondary-color), #ffb86a); /* Gradient background created using orange and yellow */
+  padding: 1.5rem; /* Space inside search section */
+  border-radius: var(--radius); /* Rounded corners */
+  margin-bottom: 2rem; /* Space bellow search section */
+}
+
+.search-container {
+  display: flex; /* Puts textual input and buttons in a row */
+  gap: 0.8rem; /* Space between the items */
+  flex-wrap: wrap; /* Transfer elements to a new line on smaller screens */
+}
+
+#cityInput {
+  flex: 1; /* Text input takes the remaining space in the row */
+  min-width: 200px; /* Minimum width to avoid shrinking too much */ 
+  padding: 0.8rem; /* Adds some space inside input object */
+  border-radius: var(--radius); /* Round corners */ 
+  border: 2px solid transparent; /* No border by default */
+  font-size: 1rem; /* Size of the input text */
+}
+
+#cityInput:focus {
+  border-color: var(--primary-color); /* Highlights the focused input field with blue border */
+}
+
+/* Buttons */
+button {
+  padding: 0.8rem 1.2rem; /* Space inside buttons */
+  border: none; /* No border */
+  border-radius: var(--radius); /* Rounded corners */
+  font-weight: 600; /* Bolded text */
+  cursor: pointer; /* Points cursor on hover */
+  transition: opacity 0.2s ease; /* Smoothly fades the button when hovered over instead of instantly */
+  color: white; /* Button text color */
+}
+
+button:hover {
+  opacity: 0.85; /* Slightly fades button on hover */
+}
+
+#searchBtn {
+  background: var(--accent-color); /* Red accent color used for search button */
+}
+
+#locationBtn {
+  background: var(--primary-color); /* Primary color useed for location button */ 
+}
+
+/* ========== UNIT TOGGLE ========== */
+.unit-toggle {
+  display: flex; /* Arrange elements (toggle, label, etc) horizontally - in the same row */
+  align-items: center; /* Centers elements vertically */
+  gap: 0.5rem; /* Adds space between toggle elements */
+  color: white; /* Text color */
+  margin-top: 0.5rem; /* Adds small space on the top */
+}
+
+/* Simple toggle switch */
+.toggle-switch {
+  position: relative; /* Allows the inner slider to be possitioned absolutelly relative to this container so that it can move inside it */
+  width: 50px; /* Width of the toggle switch */
+  height: 24px; /* height of the toggle switch*/
+}
+
+.toggle-switch input {
+  opacity: 0; /* Makes the checkbox invisible */
+  width: 0; /* Removes its width so it does not clash with the layout */
+  height: 0; /* Same as teh previous line, only for height */
+}
+
+/* The slider container */
+.slider {
+  position: absolute; /* Allows slider to be positioned iside its parent container */
+  background: #ccc; /* Default vackground color for toggle */
+  top: 0; left: 0; right: 0; bottom: 0; /* This makes slider fill entire toggle container */
+  border-radius: 24px; /* Rounded edges (more than other elements on the web page) to create togglee track */
+  transition: 0.3s; /* Creates smooth transition when background changes */
+}
+
+/* The circle inside the toggle switch */
+.slider::before {
+  content: ""; /* Empty content for the pseudo element */
+  position: absolute; /*Positioned inside the slider container */
+  width: 18px; /* Width of the circle */
+  height: 18px; /* Height of the circle*/
+  left: 3px; /* Initial horzontal position inside slider */
+  top: 3px; /* Initial vertiival position inside slider */
+  background: white; /* The color of the circle */
+  border-radius: 50%; /* This border radius creates a circle */
+  transition: 0.3s; /* Added for smooth movement when tggle changes - when circle moves */
+}
+ /* when toggle is switched, background collor changes */
+input:checked + .slider {
+  background: var(--primary-color); /* This changes toggle track background color to primary color */
+}
+
+/* When checkbox is checked, circle moves to the right (switched on state) */
+input:checked + .slider::before {
+  transform: translateX(26px);
+}
+
+/* ========== STATUS MESSAGE ========== */
+.status-message {
+  text-align: center; /* center align text */
+  padding: 0.6rem; /* Adds space inside the message box*/
+  border-radius: var(--radius); /* Rounded corners */
+  margin-bottom: 1rem; /* Adds space below */
+  font-size: 0.95rem; /* A bit smaller font */
+}
+
+.error {
+  background: #ffdddd; /* Light red background */
+  color: var(--accent-color); /* Accent color from variables used for error messages (text) */
+}
+
+.info {
+  background: #d7ecff; /* Light blue background */
+  color: #1976d2; /* Blue color used for info messages (text) */
+}
+
+.success {
+  background: #dcf8e8; /* Light green background */
+  color: #2e7d32; /* Darker green color used for success messages */
+}
+
+/* ========== CURRENT WEATHER CARD ========== */
+.current-weather-card {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #3b51c0 100%); /* Gradient background */
+  color: white; /* White text */
+  padding: 1.5rem; /* Space inside the card */
+  border-radius: var(--radius); /* Rounded corners */
+  margin-bottom: 2rem; /* Added space below the card */
+}
+
+
+.weather-main {
+  display: flex; /* Flexbox layout for main weather information */
+  justify-content: space-between; /* Used for spacing out child elements */
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+.weather-icon {
+  width: 100px; /* Icon width */
+}
+
+.temperature {
+  font-size: 3rem; /* Large font for temperature */
+  font-weight: 700; /* Bolded */
+}
+
+/* Weather details grid */
+.weather-details {
+  display: grid; /* Grid layout for details */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Auto-fit columns with min width 150 px */
+  gap: 1rem; /* Gap between grid items */
+  margin-top: 1.2rem; /* Adds space above grid */
+}
+
+.detail-item {
+  background: rgba(255, 255, 255, 0.15); /* Semi transparent background */
+  padding: 0.8rem; /* Space inside each detail box */ 
+  border-radius: var(--radius); /* Rounded corners */
+  text-align: center; /* Centers text */
+}
+
+/* ========== FORECAST ========== */
+.forecast-container {
+  display: grid; /* Grid layout for forecast cards */
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Responsive columns */
+  gap: 1rem; /* Space between cards */
+}
+
+.forecast-card {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, #e6c64a 100%); /* Gradient background for forecast cards */
+  padding: 1rem; /* Space inside card */
+  border-radius: var(--radius); /* Rounded corners */
+  text-align: center; /* Center text */
+  color: white; /* Text color */
+}
+
+
+/* ========== FOOTER ========== */
+.footer {
+  text-align: center; /* Center all footer content */
+  margin-top: 2rem; /* Space above footer */
+  color: white; /* Text color */
+  font-size: 0.85rem; /* Smaller font */
+}
+
+.footer a {
+  color: var(--secondary-color); /* Link color */
+  text-decoration: underline; /* Link text underlined */
+}
+
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 600px) {
+  .temperature {
+    font-size: 2.5rem; /* Reduces font size on smaller screens*/
+  }
+
+  button {
+    width: 100%; /* This makes button ful width on small screens */
+  }
+}

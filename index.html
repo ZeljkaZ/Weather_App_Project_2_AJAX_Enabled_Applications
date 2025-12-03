@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!--Tells the browser this document is HTML 5-->
+<!-- 
+  File: index.html
+  Author: Lawin Khalil and Zeljka Zujic
+  Date: 3 December 2025
+  Purpose: Weather Forecast App using OpenWeatherMap API
+  Description: Vanilla JavaScript weather app with current weather and 5-day forecast
+-->
+<html lang="en">
+  <!--The page language is set to English for accessibility and CEO-->
+
+  <head>
+    <!--Important information that does not show on the webpage-->
+    <meta charset="UTF-8" />
+    <!--All characters are supported-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Viewport for responsiveness -->
+    <title>Weather Forecast App</title>
+    <!--Web page title that shows in the browser tab-->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- CSS stylesheet linked -->
+  </head>
+
+  <body>
+    <!--Visible content of the webppage-->
+    <main class="container">
+      <!--Main content wrapped for better structure and consistent styling-->
+
+      <!-- Header Section -->
+      <header class="header">
+        <h1>🌤️ Weather Forecast App</h1>
+        <!--Title-->
+        <p class="subtitle">
+          <!--Subtitle-->
+          Get current weather and 5 day forecast for any city
+        </p>
+      </header>
+
+      <!-- Search Section -->
+      <section class="search-section" aria-label="Search for the weather">
+        <!-- User search for a city or uses own location. Aria-label added for accessibility -->
+
+        <div class="search-container">
+          <!--Used for grouping input element and buttons for easier styling-->
+          <input
+            type="text"
+            id="cityInput"
+            placeholder="Enter city name (such as Helsinki, London, Tokyo)"
+            aria-label="Write the city name"
+            autocomplete="off"
+          />
+          <!--Textual input field where user can type city name-->
+
+          <button
+            id="searchBtn"
+            type="button"
+            aria-label="Search for the weather"
+          >
+            Search
+          </button>
+          <!--Search button-->
+
+          <button
+            id="locationBtn"
+            type="button"
+            aria-label="Use my location"
+            title="Use my current location"
+          >
+            My Location
+          </button>
+          <!--Location button for automatically detecting user's location-->
+        </div>
+
+        <!-- Temperature Unit Toggle -->
+        <div class="unit-toggle">
+          <!--Div groups all elements related to the temperature unit change which help woth styling-->
+          <label for="unitToggle">Temperature Unit:</label>
+          <!-- Label describes what this toggle is used for. Clicking on it also switches between C and F. It also increases accessibility-->
+
+          <label class="toggle-switch"
+            ><!--This label is a container for toggle switch ans it is used for styling-->
+            <input
+              type="checkbox"
+              id="unitToggle"
+              checked
+              aria-label="Toggle between Celsius and Fahrenheit"
+            />
+            <!--Checkbox input is used as a switch. It starts on Celsius (switched on) and can be changed to Fahrenheit (switched off)-->
+            <!--Aria label is used for accessibility-->
+
+            <span class="slider"></span>
+            <!--Inline element used for styling the slider-->
+          </label>
+          <span id="unitLabel">Celsius (°C)</span>
+          <!--Inline element that shows current selected temperature value - starts with Celsius or switched on state-->
+        </div>
+      </section>
+
+      <!-- Status Messages -->
+      <div
+        id="statusMessage"
+        class="status-message"
+        aria-live="polite"
+        role="status"
+      ></div>
+      <!--Show current status to the user (for example, loading, error or success messages)-->
+      <!-- role="status" information: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/status_role -->
+
+      <!-- Current Weather Section -->
+      <section
+        id="currentWeatherSection"
+        class="weather-section hidden"
+        aria-label="Current weather"
+      >
+        <!--This section stays hidden until JavaScript ads current weather information dynamically-->
+
+        <h2>Current Weather</h2>
+        <!--Sub-heading-->
+        <div id="currentWeather" class="current-weather-card"></div>
+        <!--JavaScript inserts the current weather card here-->
+      </section>
+
+      <!-- 5-Day Forecast Section -->
+      <section
+        id="forecastSection"
+        class="weather-section hidden"
+        aria-label="5-day forecast"
+      >
+        <!--Stays hidden until weather info is fetched-->
+        <h2>5-Day Forecast</h2>
+        <div id="forecast" class="forecast-container"></div>
+        <!--Java Script inserts 5 day forecast cards here-->
+      </section>
+
+      <!-- Loading Spinner -->
+      <div id="loadingSpinner" class="spinner hidden">
+        <!--indicates to the user that data is being fetched/loading-->
+        <div class="spinner-circle"></div>
+        <!--Shows spinning circle-->
+        <p>Loading weather data...</p>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <!--Footer content at the bottom of the page-->
+      <p>
+        Weather data provided by
+        <a href="https://openweathermap.org/" target="_blank" rel="noopener"
+          >OpenWeatherMap</a
+        >
+        <!--Liink to weather API source that opens in the new tab-->
+      </p>
+      <p>Created by Lawin Khalil and Zeljka Zujic | December 2025</p>
+    </footer>
+
+    <!-- Load main application script -->
+    <script src="app.js"></script>
+    <!--JavaScript file that handles API calls and dynamically updates user interface-->
+  </body>
+</html>
