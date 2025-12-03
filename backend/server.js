@@ -10,7 +10,8 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from parent directory (frontend)
+// Serve static files from current directory first (for Render), then parent (for local)
+app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, '..')));
 
 // API proxy endpoint for current weather
