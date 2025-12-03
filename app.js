@@ -20,7 +20,7 @@ NOTE: API key is now stored securely in the backend server deployed on Render.
 Backend URL: https://weather-app-project-2-ajax-enabled.onrender.com/api
 */
 
-const API_BASE_URL = "https://weather-app-project-2-ajax-enabled.onrender.com/api"; // Variable declaration and main URL for backend API proxy.
+const API_BASE_URL = "https://weather-app-project-2-ajax-enabled-x44i.onrender.com/api"; // Variable declaration and main URL for backend API proxy.
 
 // ========== Global State ==========
 /* This section contains the variables that are accessible across the weather forecast web application. */
